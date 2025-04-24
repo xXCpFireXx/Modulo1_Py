@@ -1,4 +1,4 @@
-print("\n------- BIENVENIDO ------")
+print("\n------- BIENVENIDO CLIENTE ------")
 
 nombreProducto = input("\nIngresa el NOMBRE del producto: \n")
 nombreProducto = nombreProducto.upper() #Convierte el NOMBRE DEL PRODUCTO a MAYUSCULAS
