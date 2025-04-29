@@ -9,7 +9,7 @@ contador = 0
 
 cantidadAreasT = int(input("\n¿Cuántas ÁREAS de TRIANGULOS quieres que CALCULE el programa?\n"))
 
-for i in range(0, cantidadAreasT, 1):
+for i in range(cantidadAreasT):
     
     print(f"\nTRIÁNGULO {i+1}")
     base = float(input(f"Ingresa la BASE del TRIÁNGULO {i+1}: "))

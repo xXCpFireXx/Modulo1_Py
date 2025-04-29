@@ -7,7 +7,7 @@ contador = 0
 
 cantidadNumeros = int(input("¿Cuántos números quieres que LEA el programa?\n"))
 
-for i in range(0, cantidadNumeros, 1):
+for i in range(cantidadNumeros):
 
     numeroIngresado = int(input(f"Ingresa el número {i+1}: "))
 

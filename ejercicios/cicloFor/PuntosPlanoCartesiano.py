@@ -8,7 +8,7 @@ cuadranteI, cuadranteII, cuadranteIII, cuadranteIV = 0, 0, 0, 0
 
 cantidadPuntos = int(input("\n¿Cuántas COORDENADAS quieres que CALCULE el programa?\n"))
 
-for i in range(0, cantidadPuntos, 1):
+for i in range(cantidadPuntos):
     
     print(f"\nCOORDENADA {i+1}")
     puntoX = float(input(f"Ingresa el PUNTO X de la COORDENADA {i+1}: "))
