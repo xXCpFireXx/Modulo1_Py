@@ -68,27 +68,24 @@ while intento_actual < intento_max and not operacion_exitosa:
         
         # Procesar el último número
         if numero_actual != "":
-            try:
                 valor: float = float(numero_actual)
                 lista_calificaciones.append(valor)
-            except ValueError:
-                print(f"Error: No se pudo convertir '{numero_actual}' a número")
-        
-        # Calcular
-        suma_total: float = 0.0
-        cantidad_numeros: int = 0
-        promedio: float = 0.0
-
-        for i in lista_calificaciones:
-            suma_total += i
-
-        cantidad_numeros = len(lista_calificaciones)
-        promedio = suma_total / cantidad_numeros
-
-        #Mostrar resultados        
-        print(f"\n📊 El PROMEDIO de las CALIFICACIONES {lista_calificaciones} es: {promedio:.2f}")
-        
-        operacion_exitosa = True
+        else:            
+            # Calcular
+            suma_total: float = 0.0
+            cantidad_numeros: int = 0
+            promedio: float = 0.0
+    
+            for i in lista_calificaciones:
+                suma_total += i
+    
+            cantidad_numeros = len(lista_calificaciones)
+            promedio = suma_total / cantidad_numeros
+    
+            #Mostrar resultados        
+            print(f"\n📊 El PROMEDIO de las CALIFICACIONES {lista_calificaciones} es: {promedio:.2f}")
+            
+            operacion_exitosa = True
 
     # Opción 3: Contar calificaciones mayores que un valor
     elif opcion == "3":
