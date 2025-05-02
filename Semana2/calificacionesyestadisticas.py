@@ -67,7 +67,7 @@ while intento_actual < intento_max and not operacion_exitosa:
                 
         
         # Procesar el último número
-        if numero_actual:
+        if numero_actual != "":
             try:
                 valor: float = float(numero_actual)
                 lista_calificaciones.append(valor)
@@ -98,7 +98,7 @@ while intento_actual < intento_max and not operacion_exitosa:
     
     # Opción 4: Contar calificaciones específicas
     elif opcion == "4":
-       contar 
+       contar: float = 0.0
     # Opción 5: Salir
     elif opcion == "5":
         print("\n🚪 ¡GRACIAS POR USAR EL PROGRAMA!")
