@@ -1,74 +1,112 @@
+import time 
+
+
 print("\n ----------------- WELCOME -----------------\n")
 
-#Variable global
+# Global variable
 stock_products = {}
 
+# ------------------------------- COMPLEMENTARY FUNCTIONS -------------------------------
+# Function to validate strings 
+# (receives by parameter, the text that is printed to the user)
 def check_strings(print_text):
      
     break_while = False
 
     while break_while is not True:
-        name_product = input(print_text).strip().title()
+        name_product = input(print_text).strip().title() # it asks the user for the string, removes the spaces and finally saves it in the variable
 
-        if not name_product:
-            print("\n⚠️ Empty TEXT!")
-            print("⚠️ Enter a VALID PRODUCT\n")
-            print("---------------------------------")
+        if name_product == "": # This does the validation if it is empty
+            print("\n---------------------------------")
+            print("⚠️ Empty TEXT!")
+            print("⚠️ Enter a VALID PRODUCT")
+            print("---------------------------------\n")
         else:
             return name_product
-        
+
+# function to validate that the numbers are positive 
+# (receives by parameter the text to be printed to the user and the type of numerical data)
 def check_numbers(print_text,type_number):
      
     break_while = False
 
     while break_while is not True:
-        number = input(print_text)
-
+        number = input(print_text) #It asks the user for the value and saves it in the "number" variable
+        
         try:
-            number = type_number(number)
-            if number > 0:
+            number = type_number(number) #converts the value to the type of data that was passed by parameter
+
+            if number > 0: # this does the validation to see if it is positive
                 return number
             else:
-                print("⚠️ Enter a POSITIVE NUMBER\n")
-                print("---------------------------------")
+                print("\n---------------------------------")
+                print("⚠️ Enter a POSITIVE NUMBER")
+                print("---------------------------------\n")
         except ValueError:
-            print("⚠️ Enter a VALID NUMBER\n")
-            print("---------------------------------")
+            print("\n---------------------------------")
+            print("⚠️ Enter a VALID NUMBER")
+            print("---------------------------------\n")
 
+def show_products():
+
+    name_product:str = ""
+    price:float = 0.0
+    amount:int = 0
+
+    print("---------------------------------")
+    print("📋 LIST OF PRODUCTS")
+    print("---------------------------------")
+    
+    for product_key, product_value in stock_products.items():
+        name_product = product_key
+        price = product_value[0]
+        amount = product_value[1]        
+        print(f"✨PRODUCT: {name_product} 💲 {price}  📦 {amount}")
+    
+    print("---------------------------------\n")
+
+# -------------------------------- MAIN FUNCTIONS ----------------------------------------
+# Function to add products to the dictionary
 def add_product(product_name :str, product_price :float, product_amount :int):
-    stock_products[product_name] = (product_price, product_amount)
+    stock_products[product_name] = (product_price, product_amount) # Save the name of the product in the KEY and save the price and amount in a tuple in the VALUE
 
+# Function to search for the name of the submitted product by parameter within the dictionary
 def search_product(product_name :str):
     
-    if product_name in stock_products:
-        product_searched = stock_products[product_name]
+    if product_name in stock_products: # Check with the name of the product entered in the dictionary
+        product_searched = stock_products[product_name] # it saves in the variable the value which is the tuple
         return product_searched
     else:
         return None
 
+# Function to change the price of the entered product
 def update_price(product_name :str, new_product_price :float, product_amount):
+
+    # First of all, a tuple will not be modified, therefore, it will overwrite the data with the new price, 
+    # but maintaining the previous data of the product    
     stock_products[product_name] = (new_product_price, product_amount)
+
+    # Prints message that the process is ready
     print(f"✅ \nPrice of '{product_name}' updated to ${new_product_price:.2f}")
 
+# Function to remove a product from the dictionary
 def delete_product(product_name :str):
-    del stock_products[product_name]
+    del stock_products[product_name] # Using "Del" removes the item from the dictionary with the name of the product entered by the user
     print(f"✅ \nProduct '{product_name}' DELETED")
 
-def get_total_value():
-    pass
-
+# Function containing the entire interactive menu
 def menu():
     attempt_max: int = 5
     current_attempt: int = 0
 
-    # Bucle principal con límite de intentos
+    # Intent-Limiting Main Loop
     while current_attempt < attempt_max:
         
-        # Variable para la opción del menú
+        # Variable for Menu Option
         user_option: str = ""
 
-        # Mostrar el menú
-        print("------------ MAIN MENU ------------\n")
+        # Show menu
+        print("\n------------ MAIN MENU ------------\n")
         print("1. ➕ Add products")  
         print("2. 🔍 Search products")
         print("3. ✏️ Update prices")
@@ -76,10 +114,10 @@ def menu():
         print("5. 📊 Calculate the total value of inventory")
         print("6. 👋 EXIT\n") 
         
-        # Solicitar la opción al usuario
+        # Request the option from the user
         user_option = input("👉 Type an OPTION from 1 to 6: \n")
    
-        # Option 1: Determinar estado de aprobación
+        # Option 1: Add new products
         if user_option == "1":
             
             #local variables
@@ -91,49 +129,63 @@ def menu():
             print("➕ ADD PRODUCTS")
             print("---------------------------------\n")
 
-            # Llama a la función de validación para el nombre
+            # Call the validation function for the name
             name_product_input = check_strings("👉 Type the PRODUCT NAME\n")
             
-            # Llama a la función de validación para el precio
+            # Call the validation function for the price
             price_product_input = check_numbers("👉 Type the PRODUCT PRICE\n",float)
             
-            # Llama a la función de validación para la cantidad
+            # Call the validation function for the amount
             amount_product_input = check_numbers("👉 Type the PRODUCT AMOUNT\n",int)   
             
+            # Call add products function 
             add_product(name_product_input, price_product_input, amount_product_input)
             
-        # Option 2: Calcular promedio
+        # Option 2: Search products
         elif user_option == "2":
             print("\n---------------------------------")
             print("🔍 SEARCH PRODUCTS")
             print("---------------------------------\n")
 
+            show_products() # Call the "show_products" function to display all the products in the inventory
+
+            # local variable
             name_product_input:str = ""
             
+            # Using the "check_strings" function, it validates and then saves the returned value.
             name_product_input = check_strings("👉 Type the PRODUCT NAME that you WANT to FIND\n")
-            product_searched_return = search_product(name_product_input)
+
+            # Using the "search_product" function, first verify the existence of the product and the tuple or "None" returns.
+            product_searched_return = search_product(name_product_input) 
 
             if product_searched_return is not None:
-               price = product_searched_return[0]
-               amount = product_searched_return[1]
+               price = product_searched_return[0] # Save the PRICE of the product which is in index 0 of the tuple
+               amount = product_searched_return[1] # Save the AMOUNT of the product which is in index 1 of the tuple
 
-               print("\n🔎 SEARCH RESULTS\n")
+               # Prints all the information on the product
+               print("\n---------------------------------")
+               print("🔎 SEARCH RESULTS\n")
                print(f"✨PRODUCT: {name_product_input}")
                print(f"💲PRICE: {price}")
-               print(f"📦AMOUNT: {amount}\n")
+               print(f"📦AMOUNT: {amount}")
+               print("---------------------------------\n")
+               time.sleep(5)
             else:
-                print(f"⚠️ Product '{name_product_input}' does not EXIST.\n")
+                print(f"⚠️ Product '{name_product_input}' does not EXIST.\n") # if the "search_product" function returns "None", it displays this message
 
-        # Option 3: Contar calificaciones mayores que un valor
+        # Option 3: Update product prices
         elif user_option == "3":
             
             print("\n---------------------------------")
             print("✏️ UPDATE PRICES")
             print("---------------------------------\n")
             
+            # local variables
             name_product_input:str = ""
             price_product_input:float = 0.0
             
+            show_products() # Call the "show_products" function to display all the products in the inventory
+
             name_product_input = check_strings("👉 Type the PRODUCT NAME that you WANT to UPDATE its price\n")
             product_searched_return = search_product(name_product_input)
 
@@ -153,6 +205,7 @@ def menu():
             print("🗑️ DELETE PRODUCTS\n")
             print("---------------------------------\n")
             
+            # local variable
             name_product_input:str = ""
             
             name_product_input = check_strings("👉 Type the PRODUCT NAME that you WANT to DELETE\n")
@@ -164,27 +217,26 @@ def menu():
                 print(f"⚠️ Product '{name_product_input}' does not EXIST.\n")
             
 
-        # Option 5: Contar calificaciones específicas
+        # Option 5: Calculate the total value of inventory
         elif user_option == "5":
             
-            print("\n📊 CALCULAR EL VALOR TOTAL DEL INVENTARIO\n")
-            get_total_value()
-
-        # Option 6: Salir
+            print("\n📊 CALCULATE THE TOTAL VALUE OF INVENTORY\n")
+            
+        # Option 6: Exit
         elif user_option == "6":
-            print("\n🚪 ¡GRACIAS POR USAR EL PROGRAMA!")
-            break  # Salir del bucle
+            print("\n🚪 THANK YOU FOR USING THE PROGRAM!")
+            break  # Exit of the loop
         
-        # Option inválida
+        # Invalid Option
         else:
             current_attempt += 1
-            print("\n⚠️ Error: Ingrese una OPCIÓN VÁLIDA del 1 al 6.!!\n")
+            print("\n⚠️ Error: Enter a VALID OPTION from 1 to 6.!!\n")
 
-        # Verificar si se alcanzó el límite de intentos
+        # Check if the attempt limit has been reached
         if current_attempt == attempt_max:
-            print("\n⚠️ Límite de INTENTOS alcanzado")
+            print("\n⚠️ Limit of ATTEMPTS reached")
 
-
+# Main Function
 def main():
     menu()
 
