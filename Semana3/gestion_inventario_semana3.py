@@ -1,10 +1,9 @@
-import time 
-
+import time # import the "Time" module
 
 print("\n ----------------- WELCOME -----------------\n")
 
 # Global variable
-stock_products = {}
+stock_products = {} # Dictionary that stores all products
 
 # ------------------------------- COMPLEMENTARY FUNCTIONS -------------------------------
 # Function to validate strings 
@@ -47,8 +46,10 @@ def check_numbers(print_text,type_number):
             print("⚠️ Enter a VALID NUMBER")
             print("---------------------------------\n")
 
+# Function to display the list of available products
 def show_products():
 
+    # Define and initialize the variables
     name_product:str = ""
     price:float = 0.0
     amount:int = 0
@@ -57,10 +58,10 @@ def show_products():
     print("📋 LIST OF PRODUCTS")
     print("---------------------------------")
     
-    for product_key, product_value in stock_products.items():
-        name_product = product_key
-        price = product_value[0]
-        amount = product_value[1]        
+    for product_key, product_value in stock_products.items(): # Iterate the dictionary 
+        name_product = product_key # Save the product name
+        price = product_value[0] # Save the price of the product
+        amount = product_value[1] # Save the amount of the product       
         print(f"✨PRODUCT: {name_product} 💲 {price}  📦 {amount}")
     
     print("---------------------------------\n")
@@ -94,8 +95,9 @@ def delete_product(product_name :str):
     del stock_products[product_name] # Using "Del" removes the item from the dictionary with the name of the product entered by the user
     print(f"✅ \nProduct '{product_name}' DELETED")
 
+# Main Function
 # Function containing the entire interactive menu
-def menu():
+def main():
     attempt_max: int = 5
     current_attempt: int = 0
 
@@ -169,7 +171,8 @@ def menu():
                print(f"💲PRICE: {price}")
                print(f"📦AMOUNT: {amount}")
                print("---------------------------------\n")
-               time.sleep(5)
+
+               time.sleep(3) # Using the "Time" module with the "Sleep" function, a wait is made so that the result is better visualized
             else:
                 print(f"⚠️ Product '{name_product_input}' does not EXIST.\n") # if the "search_product" function returns "None", it displays this message
 
@@ -191,14 +194,15 @@ def menu():
 
             if product_searched_return is not None:
                price_product_input = check_numbers("👉 Enter the NEW PRICE\n",float)
-               amount = product_searched_return[1]
+               amount = product_searched_return[1] #Save the quantity of the product
 
+               # Call the "update_price" function to 
                update_price(name_product_input,price_product_input,amount)
             else:
                 print(f"⚠️ Product '{name_product_input}' does not EXIST.\n")
             
         
-        # Option 4: Contar calificaciones específicas
+        # Option 4: Delete products
         elif user_option == "4":
 
             print("\n---------------------------------")
@@ -219,9 +223,26 @@ def menu():
 
         # Option 5: Calculate the total value of inventory
         elif user_option == "5":
+
+            print("\n---------------------------------")
+            print("📊 CALCULATE THE TOTAL VALUE OF INVENTORY")
+            print("---------------------------------\n")
             
-            print("\n📊 CALCULATE THE TOTAL VALUE OF INVENTORY\n")
+            # local variables
+            total_sum = 0 # Variable to save the sum
+            price:float = 0.0
+            amount:int = 0
+
+            for product_value in stock_products.values():
+                price = product_value[0] # Save the price
+                amount = product_value[1]  # Save the amount
+
+                value_total = lambda price, amount: price * amount # lambda function where the price is multiplied by the quantity 
+
+                total_sum += value_total(price,amount) # variable that in each iteration stores the result returned by the lambda function
             
+            print(f"The total INVENTORY CALCULATION is: 💲{total_sum}\n") # Displays the total of the calculation
+
         # Option 6: Exit
         elif user_option == "6":
             print("\n🚪 THANK YOU FOR USING THE PROGRAM!")
@@ -236,8 +257,5 @@ def menu():
         if current_attempt == attempt_max:
             print("\n⚠️ Limit of ATTEMPTS reached")
 
-# Main Function
-def main():
-    menu()
-
+# Call MAIN FUNCTION
 main()
