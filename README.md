@@ -25,4 +25,7 @@ En esta funcionalidad puedes eliminar productos del inventario, aquí debes escr
 ## 📊 CALCULAR EL VALOR TOTAL DEL INVENTARIO
 Finalmente, en esta funcionalidad se **MOSTRARÁ** el **💲COSTO TOTAL DEL INVENTARIO**.
 
-
+## CONSIDERACIONES
+- En **✨EL NOMBRE DEL PRODUCTO** puedes escribir cualquier nombre desde caracteres especiales, letras y números como ***(f@b, escoba, 7Fast)***.
+- En **💲EL PRECIO** debes escribir números enteros y números con decimales como ***(1200 ó 5095.99)***.
+- En **📦LA CANTIDAD** debes escribir un número entero **SIN** decimales com ***(8)***.
