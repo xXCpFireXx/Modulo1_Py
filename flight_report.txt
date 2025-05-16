@@ -1,0 +1,43 @@
+✈️ Flight Report ✈️
+==================================================
+
+✈️ Flight: CK-623
+🌎 From: Ciudad de Panamá
+🏙️ To: Bogotá
+⏰ Schedule: 03:55
+🪑 Available Seats: 12
+✅ Booked Seats: 0
+📊 Occupancy Percentage: 0.0%
+🔽 Seats Available: A1, A2, A3, A4, B1, B2, B3, B4, C1, C2, C3, C4
+🔼 Seats Booked: None
+--------------------------------------------------
+✈️ Flight: BZ-926
+🌎 From: Lima
+🏙️ To: Cartagena
+⏰ Schedule: 16:48
+🪑 Available Seats: 12
+✅ Booked Seats: 0
+📊 Occupancy Percentage: 0.0%
+🔽 Seats Available: A1, A2, A3, A4, B1, B2, B3, B4, C1, C2, C3, C4
+🔼 Seats Booked: None
+--------------------------------------------------
+✈️ Flight: LY-744
+🌎 From: Santiago de Chile
+🏙️ To: Cali
+⏰ Schedule: 18:52
+🪑 Available Seats: 12
+✅ Booked Seats: 0
+📊 Occupancy Percentage: 0.0%
+🔽 Seats Available: A1, A2, A3, A4, B1, B2, B3, B4, C1, C2, C3, C4
+🔼 Seats Booked: None
+--------------------------------------------------
+✈️ Flight: ZQ-869
+🌎 From: Cartagena
+🏙️ To: São Paulo
+⏰ Schedule: 23:20
+🪑 Available Seats: 12
+✅ Booked Seats: 0
+📊 Occupancy Percentage: 0.0%
+🔽 Seats Available: A1, A2, A3, A4, B1, B2, B3, B4, C1, C2, C3, C4
+🔼 Seats Booked: None
+--------------------------------------------------
